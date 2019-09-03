@@ -1,0 +1,19 @@
+Package: spfit
+Title: Single Paramter Fit
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Elio",
+           family = "Campitelli",
+           role = c("cre", "aut"),
+           email = "elio.campitelli@cima.fcen.uba.ar",
+           comment = c(ORCID = "0000-0002-7742-9230"))
+Description: Implementation of Single Parameter Fit algorithm presented in 
+  Laurent Boué (2019) <arXiv:1904.12320>. It encodes the information of any vector   
+  in one single parameter. 
+License: GPL-3
+Encoding: UTF-8
+Language: en
+LazyData: true
+Imports: 
+    Rmpfr
+RoxygenNote: 6.1.1
