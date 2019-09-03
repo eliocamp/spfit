@@ -3,6 +3,8 @@
 language: R
 cache: packages
 
+before_install:
+  - sudo apt-get install -y libmpfr-dev
 
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 deploy:
