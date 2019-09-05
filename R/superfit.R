@@ -28,7 +28,7 @@
 sp_fit <- function(data, binary_precision = 12) {
   m <- min(data)
   M <- max(data)
-# browser()
+  # browser()
   data <- (data - m)/(M - m)
 
   denormalise <- function(data) {
@@ -72,11 +72,18 @@ predict.superfit <- function(object, n = object$n, ...) {
 }
 
 #' @export
-print.superfit <- function(x, ...) {
-  max.digits <- getOption("Rmpfr.print.max.digits", Rmpfr::getPrec(x$decimal))
-  print(Rmpfr::format(x$decimal, max.digits = max.digits))
+as.character.superfit <- function(x, digits = NULL, ...) {
+  number_string <- Rmpfr::formatMpfr(x$decimal, digits = digits)
+  more_digits_text <- NULL
+  if (!is.null(digits)) {
+    whole <- Rmpfr::formatMpfr(x$decimal, digits = NULL)
+    more_digits <- nchar(whole) - nchar(number_string)
+    if (more_digits > 0) {
+      more_digits_text <- paste0("... (", more_digits, " more digits)")
+    }
+  }
+  paste0(number_string, more_digits_text)
 }
-
 
 #' Changes a single digit of a single parameter fit
 #'
@@ -102,7 +109,7 @@ print.superfit <- function(x, ...) {
 #' @export
 change_digit <- function(fit, which = "random") {
   number <- Rmpfr::formatMpfr(fit$decimal)
-# browser()
+  # browser()
   if (which == "random") {
     which <- sample(seq_len(nchar(number))[-c(1, 2)], 1)
   } else {

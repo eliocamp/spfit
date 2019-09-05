@@ -9,53 +9,57 @@
 status](https://travis-ci.org/eliocamp/spfit.svg?branch=master)](https://travis-ci.org/eliocamp/spfit)
 <!-- badges: end -->
 
-The goal of spfit is to …
+spfit (**S**ingle **P**arameter Fit) is an R implementation of Laurent
+Boué’s [Real numbers, data science and chaos: How to fit any dataset
+with a single parameter](https://arxiv.org/abs/1904.12320). It can take
+any data and fit a continuous and differenciable model with just one
+parameter with arbitrary accuracy:
+
+<p align="center">
+
+<img src="man/figures/formula.png" />
+
+</p>
 
 ## Installation
 
-You can install the released version of spfit from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("spfit")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("eliocamp/spfit")
 ```
 
+<!-- the released version of spfit from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("spfit")
+```
+-->
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Fit the rise of CO2 perfectly with one parameter
 
 ``` r
 library(spfit)
-## basic example code
+data("co2") 
+co2 <- c(co2)
+
+co2_fit <- sp_fit(co2)
+
+co2_pred <- predict(co2_fit)
+
+plot(co2, type = "l")
+points(predict(co2_fit), col = "red")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+<img src="man/figures/README-example-1.png" width="100%" />
+
+What’s our alpha parameter?
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+as.character(co2_fit, digits = 30)
+#> [1] "0.0416842755182496396583250113637... (1661 more digits)"
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
