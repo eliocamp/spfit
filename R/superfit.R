@@ -14,7 +14,7 @@
 #' fit <- sp_fit(x, binary_precision = 12)
 #'
 #' # Print the single parameter
-#' print(fit)
+#' as.character(fit, digits = 20)
 #'
 #' # Plot "observed" and "predicted"
 #' plot(x)
