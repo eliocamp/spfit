@@ -66,35 +66,41 @@
 <a href="#spfit" class="anchor"></a>spfit</h1></div>
 <!-- badges: start -->
 
-<p>The goal of spfit is to …</p>
+<p>spfit (<strong>S</strong>ingle <strong>P</strong>arameter Fit) is an R implementation of Laurent Boué’s <a href="https://arxiv.org/abs/1904.12320">Real numbers, data science and chaos: How to fit any dataset with a single parameter</a>. It can take any data and fit a continuous and differenciable model with just one parameter with arbitrary accuracy:</p>
+<p align="center">
+
+<img src="reference/figures/formula.png"></p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of spfit from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"spfit"</span>)</a></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"eliocamp/spfit"</span>)</a></code></pre></div>
+<p>You can install the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"eliocamp/spfit"</span>)</a></code></pre></div>
+<!-- the released version of spfit from [CRAN](https://CRAN.R-project.org) with:
+
+``` r
+install.packages("spfit")
+```
+-->
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(spfit)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">## basic example code</a></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(cars)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;      speed           dist       </span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></a>
-<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></a></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub!</p>
+<p>Fit the rise of CO2 perfectly with one parameter</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(spfit)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"co2"</span>) </a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">co2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(co2)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">co2_fit &lt;-<span class="st"> </span><span class="kw"><a href="reference/sp_fit.html">sp_fit</a></span>(co2)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">co2_pred &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(co2_fit)</a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="kw"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(co2, <span class="dt">type =</span> <span class="st">"l"</span>)</a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="kw"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span>(co2_fit), <span class="dt">col =</span> <span class="st">"red"</span>)</a></code></pre></div>
+<p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<p>What’s our alpha parameter?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/character.html">as.character</a></span>(co2_fit, <span class="dt">digits =</span> <span class="dv">30</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt; [1] "0.0416842755182496396583250113637... (1661 more digits)"</span></a></code></pre></div>
 </div>
 </div>
   </div>

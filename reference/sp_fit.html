@@ -130,7 +130,7 @@
 <span class='no'>fit</span> <span class='kw'>&lt;-</span> <span class='fu'>sp_fit</span>(<span class='no'>x</span>, <span class='kw'>binary_precision</span> <span class='kw'>=</span> <span class='fl'>12</span>)
 
 <span class='co'># Print the single parameter</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fit</span>)</div><div class='output co'>#&gt; [1] "0.91150790987890746797732468996854315656168058158818252717590545645945118606739326743427920497718635827935248338869103457159520046439011863365504445633249035870945981202502206854095454017609359245708340447576915996564992040458476636296740516866617813306468724519505789737223180917303457472770446124327910504875932103038262613755556080473783967188473892392986529785"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span>(<span class='no'>fit</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>20</span>)</div><div class='output co'>#&gt; [1] "0.91150790987890746798... (342 more digits)"</div><div class='input'>
 <span class='co'># Plot "observed" and "predicted"</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/predict.html'>predict</a></span>(<span class='no'>fit</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>)</div><div class='img'><img src='sp_fit-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># "Extrapolate" to unseen data</span>
